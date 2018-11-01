@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='10.0' replicaid='CA2582960012B041'>
+<noteinfo noteid='176' unid='096ADA0A8FC26D93CA256EC4002B8D5B' sequence='8'>
+<created><datetime>20040701T175542,35+10</datetime></created>
+<modified><datetime>20180803T112138,45+10</datetime></modified>
+<revised><datetime>20180803T112138,44+10</datetime></revised>
+<lastaccessed><datetime>20180803T112138,45+10</datetime></lastaccessed>
+<addedtofile><datetime>20180523T132408,25+10</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Chris Hudson/OU=Staff/O=ABS</name><name>CN=Chris Hudson/O=Chris Hudson</name></updatedby>
+<wassignedby><name>CN=Chris Hudson/O=Chris Hudson</name></wassignedby>
+<item name='$TITLE' sign='true'><text>Time\Hour\SourceIP</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+rgACABQAAgAkMQAAAAAAAAAA8D8DAAIAHAAHAFJlcXVlc3QABQAHAFJlcXVlc3QAAwAFAE4ASgAH
+AAIADQALAAoABwAJAAQAJDFkdFJlcXVlc3RIb3VyVXNlckFkZHJlc3NTdGF0dXNDb2RlUmVxdWVz
+dCRDb25mbGljdCRSRUYEAAQAAAAcAAUABABGb3JtAQAIAGZybUVudHJ5CgIDAAcADgAIAAlMMVMy
+UzNT
+</formula></item>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+LAACAABEiGYHAAANAAhmBw0ACwBkdFJlcXVlc3RIb3VyVXNlckFkZHJlc3M=
+</rawitemdata></item>
+<item name='$Totals' sign='true'><textlist><text>1</text><text>0</text><text
+>0</text><text>0</text><text>0</text></textlist></item>
+<item name='$VIEWFORMAT' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQAFAAIACUQAAFZDIAACAAAAFgAAACAAAQAACgUAAAAAAAAAAAICAAAAVkMDBA0AAAAAAAAACAAB
+AQoKAAEAAAAAAAAAAgIAAABWQwMECwAAAAAAAAAIAAEBCAoAAQAAAAAAAAACAgAAAFZDAAAKAAAA
+AAAAACEAAQALCgAAAAAAAAAAAAICAAAAVkMAAAcABwAeAAAAIAMBAAAKAAAAAAAAAAAAAgIAAAAk
+MRYAAgAUAAIAJDEAAAAAAAAAAPA/AwBkdFJlcXVlc3RIb3VyVXNlckFkZHJlc3NTdGF0dXNDb2Rl
+UmVxdWVzdFJlcXVlc3QeAAIAHAAHAFJlcXVlc3QABQAHAFJlcXVlc3QAAwAmAAEAAAABAQAJAQAA
+CgEBDQoAAAEArSsBAAEAAQAAAAAAAAAAAFdDAQEOCQAAAAAAAAAAAAAAAAAAAAABAAQAAAAAAAAA
+AAAAAAAAAAAAAAAAAABXQwEBDgkAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAV0MBAQ4JAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFdDAQEOCQAA
+AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAABXQwEBDgkAAAAAAAAAAAAAAAAA
+AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAAAAAQD///8ABQD///8AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>Y</text></item>
+<item name='$DesignerVersion'><text>5</text></item></note>
+

@@ -1,0 +1,293 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+
+Use "slMetadata"
+
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Class WebEntry
+Declare Sub ProcessData(aDoc As NotesDocument, sLogType As String)
+Declare Function SplitString (thisText As String, delim As String) As Variant
+Declare Function SkipThisRecord(sString As String) As Boolean
+Declare Sub ImportWeblogs
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim sLogType As String
+Dim sSkipInternalABS As String
+Dim sSkipAlivePage As String
+Dim vSkipStrings As Variant
+
+Class WebEntry
+	Private m_Type As String	
+	Private m_UserAddress As String
+	Private m_ServerAddress As String
+	Private m_AuthenticatedUser As String
+	Private m_RequestDateTime As NotesDateTime
+	Private m_RequestLine As String
+	Private m_StatusCode As String
+	Private m_ContentLength As Long
+	Private m_Referer As String
+	Private m_UserAgent As String
+	Private m_ProcessTime As Integer
+	Private m_Cookie As String
+	Private m_TranslatedURI As String
+	
+	Sub setType(sType As String)
+		m_Type = sType
+	End Sub
+	
+	Function getType As String
+		getType = m_Type
+	End Function
+	
+	Sub setUserAddress(sUserAddress As String)
+		m_UserAddress = sUserAddress
+	End Sub
+	
+	Function getUserAddress As String
+		getUserAddress = m_UserAddress
+	End Function
+	
+End Class
+'++LotusScript Development Environment:2:2:ProcessData:1:8
+Sub ProcessData(aDoc As NotesDocument, sLogType As String)
+	Dim sDate As String
+	Dim sTime As String
+	
+	Dim sFormula As String
+	Dim sTemp As Variant
+	
+	Dim sTimeBracketed As String
+	Dim iSecond As Integer
+	Dim i10Secs As Integer
+	Dim iMinute As Integer
+	Dim iHour As Integer
+	
+	Dim dRequest As NotesDateTime	
+	Dim Values() As String
+	Dim x As Variant
+	
+	Select Case sLogType 
+	Case "Simple" 
+		Redim Values(6)
+	Case "SemiExtended"
+		Redim Values(8)		
+	Case "Extended"
+		Redim Values(12)		
+	End Select
+	
+	x = SplitString(aDoc.OriginalData(0), " ")
+	Values(0) = x(0) ' 
+	
+	x = SplitString(x(1), " ")
+	Values(1) = x(0)
+	
+	x = SplitString(x(1), " ")
+	Values(2) = x(0)
+	
+	x = SplitString(x(1), "[")
+	x = SplitString(x(1), "]")
+	
+	Values(3) = x(0)
+	
+	x = SplitString(x(1), | "|)
+	x = SplitString(x(1), |" |)
+	Values(4) = x(0)
+	
+	x = SplitString(x(1), " ")
+	Values(5) = x(0)
+	
+	x = SplitString(x(1), " ")
+	Values(6) = x(0)
+	
+	If sLogType = "SemiExtended" Then
+		'do the next 2 elements
+		x = SplitString(x(1), |"|)
+		x = SplitString(x(1), |" |)
+		Values(7) = x(0)
+		
+		x = SplitString(x(1), |"|)
+		x = SplitString(x(1), |"|)
+		Values(8) = x(0)
+		
+	End If
+	
+	If sLogType = "Extended" Then
+		'do the next 6 elements
+		'do the next 6 elements
+		x = SplitString(x(1), |"|)
+		x = SplitString(x(1), |" |)
+		Values(7) = x(0)
+		
+		x = SplitString(x(1), |"|)
+		x = SplitString(x(1), |" |)
+		Values(8) = x(0)
+		
+		x = SplitString(x(1), " ")	
+		Values(9) = x(0)
+		
+		x = SplitString(x(1), | "|)
+		x = SplitString(x(1), |"|)
+		Values(10) = x(0)
+		
+		x = SplitString(x(1), |"|)
+		x = SplitString(x(1), |" |)
+		Values(11) = x(0)
+	End If
+	
+	aDoc.ReplaceItemValue "UserAddress", Values(0)
+	aDoc.ReplaceItemValue "ServerAddress", Values(1)
+	aDoc.ReplaceItemValue "AuthenticatedUser", Values(2)
+	
+	x=SplitString(Values(3), ":")
+	sDate = x(0)
+	x=SplitString(x(1), " ")
+	sTime = x(0)
+	sTimeBracketed = "[" & sTime & "]"
+	sFormula = "@Second(" & sTimeBracketed & ")"
+	sTemp = Evaluate(sFormula)
+	iSecond = sTemp(0)
+	i10Secs = Fraction(iSecond/10)*10
+	iSecond = iSecond - i10Secs
+	sFormula = "@Minute(" & sTimeBracketed & ")"
+	sTemp = Evaluate(sFormula)
+	iMinute = sTemp(0)
+	sFormula = "@Hour(" & sTimeBracketed & ")"
+	sTemp = Evaluate(sFormula)
+	iHour = sTemp(0)
+	
+	Set dRequest	= New NotesDateTime(sDate & " " & sTime)
+	aDoc.ReplaceItemValue "dtRequest", dRequest
+	
+	dRequest.AdjustSecond(-i10Secs)
+	aDoc.ReplaceItemValue "dtRequest10Secs", dRequest
+	dRequest.AdjustSecond(-iSecond)
+	aDoc.ReplaceItemValue "dtRequestMinute", dRequest	
+	dRequest.AdjustMinute(-iMinute)
+	aDoc.ReplaceItemValue "dtRequestHour", dRequest
+	
+	aDoc.ReplaceItemValue "Request", Values(4)
+	aDoc.ReplaceItemValue "StatusCode", Values(5)
+	aDoc.ReplaceItemValue "ContentLength",Values(6)
+	
+	If sLogType = "SemiExtended" Then
+		'do the next 2 elements	
+		aDoc.ReplaceItemValue "Referer", Values(7)
+		aDoc.ReplaceItemValue "UserAgent", Values(8)
+	End If
+	
+	If sLogType = "Extended" Then
+		'do the next 6 elements	
+		aDoc.ReplaceItemValue "Referer", Values(7)
+		aDoc.ReplaceItemValue "UserAgent", Values(8)
+		aDoc.ReplaceItemValue "ProcessTimeMs", Clng(Values(9))
+		aDoc.ReplaceItemValue "Cookie", Values(10)
+		
+	End If
+	
+	
+End Sub
+
+'++LotusScript Development Environment:2:1:SplitString:1:8
+Function SplitString (thisText As String, delim As String) As Variant
+	'** Split a string at the first occurence of the specified delimiter.
+	Dim templist List As String
+	Dim tempstring As String
+	Dim delimlength As Integer
+	Dim pos As Integer
+	Dim i As Integer
+	tempstring = thisText
+	delimlength = Len(delim)
+	pos = Instr(1, tempstring, delim, 5)
+	i = 0
+	If pos > 0 Then
+		'** get the substring
+		templist(i) = Left$(tempstring, pos - 1)
+		'** reset the variables
+		tempstring = Right$(tempstring, Len(tempstring) - pos - delimlength + 1)
+		pos = Instr(1, tempstring, delim, 5)
+		i = i + 1	
+	End If
+	'** make sure you get the stuff at the end of the string
+	templist(i) = tempstring
+	'** return the array as a result
+	SplitString = templist
+End Function
+
+'++LotusScript Development Environment:2:1:SkipThisRecord:5:8
+%REM
+	Function SkipThis
+	Description: Comments for Function
+%END REM
+Function SkipThisRecord(sString As String) As Boolean
+	SkipThisRecord = False
+	
+	'Skip Internal ABS
+	If sSkipInternalABS = "Yes" And Left(sString,7) = "144.53." Then
+		SkipThisRecord = True	
+	End If
+	
+	'Skip Alive Page
+	If sSkipAlivePage = "Yes" And InStr(sString,"alive/page.nsf") <> 0 Then
+		SkipThisRecord = True	
+	End If
+	
+	'Skip Other Strings
+	ForAll aString In vSkipStrings
+		If Not InStr(sString,aString) = 0 Then 
+			SkipThisRecord = True
+		End if
+	End ForAll
+	
+End Function
+
+
+'++LotusScript Development Environment:2:2:ImportWeblogs:1:8
+Sub ImportWeblogs
+	Dim session As New NotesSession	
+	Dim dbCurrent As NotesDatabase
+	Dim aDoc As NotesDocument
+	Dim sString As String
+	Dim iIndex As Integer
+	Dim iCount As Long
+	
+	Dim vInputFiles As Variant	
+	Dim wshFSO As Variant
+	Dim wshFile As Variant
+	Dim fsoStream As Variant
+	
+	sLogType = getMetaData("LogType")
+	sSkipInternalABS = getMetaData("SkipInternalABS")
+	sSkipAlivePage = getMetaData("SkipAlivePage")
+	vSkipStrings = getMetaData("SkipStrings")
+	vInputFiles = getMetaData("InputFiles")
+	Set dbCurrent = session.CurrentDatabase
+	Set wshFSO = CreateObject("Scripting.FileSystemObject")
+	
+	Forall file In vInputFiles
+		Set wshFile = wshFSO.GetFile(file)
+		Set fsoStream = wshFile.OpenAsTextStream(1,0)
+	
+		iCount = 0	
+		Do Until fsoStream.AtEndOfStream
+			iCount = iCount + 1		
+			Print file & " " & iCount		
+			sString = fsoStream.ReadLine()
+			Set aDoc = dbCurrent.CreateDocument
+			With aDoc
+				.Form = "frmEntry"
+				.OriginalData = sString
+			End With
+			If Not SkipThisRecord(sString) then 
+				ProcessData aDoc, sLogType
+				aDoc.Save True,True
+			End If
+			Set aDoc = Nothing
+		Loop
+		fsoStream.Close
+	End ForAll	
+End Sub
+
+

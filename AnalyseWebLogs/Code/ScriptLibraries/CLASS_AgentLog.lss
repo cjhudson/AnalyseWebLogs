@@ -1,0 +1,132 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Class AgentLog
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Class AgentLog
+	Private m_Form As String	
+	Private m_MaxLogSize As Integer
+	Private m_Session As NotesSession
+	Private m_Database As NotesDatabase	
+	Private m_AgentDoc As NotesDocument
+	Private m_AgentName As String
+	Private m_AgentView As NotesView
+	
+	Sub AddEntry(sEvent As String)
+		If LogSize => MaxLogSize Then
+			AgentDoc.logFinishTime = Now()
+			AgentDoc.Save True,True
+			Set m_AgentDoc = Nothing
+			CreateNewLog
+			GetLatestLog
+		End If
+		AddToTextList Now() & "  " & sEvent, EventField, AgentDoc
+		AgentDoc.Save True,True		
+	End Sub
+	
+	Private Sub AddToTextList (sTextString As String, sFieldName As String, vDocument As NotesDocument)
+		Dim vItem As NotesItem
+		Set vItem = vDocument.GetFirstItem(sFieldName)
+		If vItem Is Nothing Then
+			Set vItem = New NotesItem(vDocument,sFieldName,sTextString)
+		Else 
+			vItem.AppendToTextList(sTextString)
+		End If  
+		Set vItem = Nothing
+	End Sub
+	
+	Private Function AgentDoc As NotesDocument
+		If m_AgentDoc Is Nothing Then
+			GetLatestLog
+		End If
+		Set AgentDoc = m_AgentDoc
+	End Function
+	
+	Private Function AgentName As String
+		If m_AgentName = "" Then
+			m_AgentName = "Unknown"
+		End If
+		AgentName = m_AgentName
+	End Function
+	
+	Private Function AgentView As NotesView
+		If m_AgentView Is Nothing Then
+			Set m_AgentView = LogDatabase.GetView("vwAgentLog")
+		End If
+		Set AgentView = m_AgentView
+	End Function
+	
+	Private Sub CreateNewLog
+		Set m_AgentDoc = LogDatabase.CreateDocument
+		m_AgentDoc.Form = m_Form
+		m_AgentDoc.logAgentName = AgentName
+		m_AgentDoc.logStartTime = Now()
+		AddToTextList " ", EventField, m_AgentDoc
+		m_AgentDoc.Save True,True
+		AgentView.Refresh	
+		Set m_AgentView = Nothing
+	End Sub
+	
+	Private Function EventField As String
+		EventField = "logAgentEvents"
+	End Function
+	
+	Private Sub GetLatestLog
+		Dim AgentLogs As NotesDocumentCollection
+		Set AgentLogs = AgentView.GetAllDocumentsByKey(AgentName)
+		If AgentLogs.Count = 0 Then
+			CreateNewLog
+			Set AgentLogs = AgentView.GetAllDocumentsByKey(AgentName)
+		End If
+		Set m_AgentDoc = AgentLogs.GetLastDocument
+		Set AgentLogs = Nothing
+	End Sub
+	
+	Private Function LogDatabase As NotesDatabase
+		If m_Database Is Nothing Then
+			Set m_Database = m_Session.CurrentDatabase
+		End If
+		Set LogDatabase = m_Database
+	End Function
+	
+	Private Function LogSize As Integer
+		Dim EventItem As notesItem
+		Set EventItem = AgentDoc.GetFirstItem(EventField)
+		LogSize = EventItem.ValueLength
+	End Function
+	
+	Private Function MaxLogSize As Integer
+		MaxLogSize = m_MaxLogSize
+	End Function
+	
+	Sub New (sAgentName As String)
+		Set m_Session = New NotesSession
+		m_MaxLogSize = 14000
+		m_Form = "frmAgentLog"
+		SetAgentName(sAgentName)
+		GetLatestLog
+	End Sub
+	
+	Sub RaiseAlert (sAlert As String)
+		Dim AlertItem As NotesItem
+		Dim iAlerts As Integer
+		
+		Set AlertItem = AgentDoc.GetFirstItem("logAlert")
+		If AlertItem Is Nothing Then
+			AgentDoc.ReplaceItemValue "logAlert", 1
+		Else
+			iAlerts = AlertItem.Values(0)
+			AgentDoc.ReplaceItemValue "logAlert", iAlerts + 1
+		End If
+		AgentDoc.Save True,True
+		AddEntry("##### " & sAlert & " #####")
+	End Sub
+	
+	Sub SetAgentName(sAgentName As String)
+		m_AgentName = sAgentName
+	End Sub
+	
+End Class

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" replicaid="CA2582960012B041" version="10.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="142" sequence="1" unid="831B45D07259FB48CA256EA8002D1161">
+<created><datetime>20040603T181215,69+10</datetime></created>
+<modified><datetime>20180523T132408,01+10</datetime></modified>
+<revised><datetime>20040603T181215,69+10</datetime></revised>
+<lastaccessed><datetime>20180523T132408,01+10</datetime></lastaccessed>
+<addedtofile><datetime>20180523T132408,01+10</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=William Zircher/O=Iris</name><name>CN=Ryan Jansen/O=Iris</name><name>CN=Lotus Notes Template Development/O=Lotus Notes</name><name>CN=Notes ABSDesign/OU=SYS/O=ABS</name><name>CN=Chris Hudson/OU=Staff/O=ABS</name></updatedby>
+<item name="$Flags"><text>34Ci</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+<item name="$ImageNames" sign="true"><text>tools.GIF</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$TITLE" sign="true"><textlist><text>Admin.gif</text><text>Admin</text></textlist></item>
+<item name="$DesignerVersion"><text>5</text></item></note>

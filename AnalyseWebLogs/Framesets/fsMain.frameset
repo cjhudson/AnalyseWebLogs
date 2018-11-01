@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='10.0' replicaid='CA2582960012B041'>
+<noteinfo noteid='1c6' unid='AA9FE6FDEE0B34C5CA25788F002A0434' sequence='6'>
+<created><datetime>20110513T173855,88+10</datetime></created>
+<modified><datetime>20180803T150450,60+10</datetime></modified>
+<revised><datetime>20180803T150450,59+10</datetime></revised>
+<lastaccessed><datetime>20180803T150450,60+10</datetime></lastaccessed>
+<addedtofile><datetime>20180523T132408,65+10</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Chris Hudson/O=Chris Hudson</name></updatedby>
+<wassignedby><name>CN=Chris Hudson/O=Chris Hudson</name></wassignedby>
+<item name='$TITLE' sign='true'><text>fsMain</text></item>
+<item name='$WINDOWTITLE' sign='true'><formula>@DbTitle</formula></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIABgAAAAAAAAAAAAAAAAAAAAAA8P9CAEUAAAAAAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAMAAQAAAAAAAQDR5+8AAAABADIAAwABAAEAFAADAAEA8f87ABEAAAAAQAAAAgABAAEAAAAAAAcA
+AAAAAAEA0efvAAAAZkhlYWRlcgEA////AAEAAAkBAP///wA/9v8qAAAAAAADAAcACAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAHBnSGVhZGVy8P8+AAEAAAAAAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAAAAEA
+AgAAAAAABQDR5+8AAAADAAEAAQDNAAMAAQDx/0sAUQEAAABgAAACAAEAAQAAAAAACgAAAAUAAQDR
+5+8AAABmTmF2aWdhdG9yZk1haW4AAAMAAgAAAAEA9/f3AAEAAAkBAHGyzwA/9v8tAAAAAAADAAcA
+CwAAAAAAAAAAAAAAAAAAAAAAAAAAAHBnTmF2aWdhdG9yP/H/OQARAAAAAEAAAAMAAQABAAAAAAAF
+AAAAAAABANHn7wAAAGZNYWluAQD///8AAQAACgEAAAAAAD/2/ysAAAAAAAMABwAJAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAcGdXZWxjb21lP/H/NAABAAAAAEAAAAMAAQABAAAAAAAAAAAAAAABANHn7wAA
+AAEA////AAEAAAoBAAAAAAD2/yoAAAAAAAMABwAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAcGdGb290
+ZXI=
+</rawitemdata></item>
+<item name='$Flags'><text>#34CQ</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item></note>
+

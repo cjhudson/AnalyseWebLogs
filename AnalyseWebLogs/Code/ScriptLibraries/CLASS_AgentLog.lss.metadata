@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="filter" replicaid="CA2582960012B041" version="10.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="126" sequence="2" unid="4697B39A7641D920CA256E990010E9E6">
+<created><datetime>20040519T130444,54+10</datetime></created>
+<modified><datetime>20180803T112137,95+10</datetime></modified>
+<revised><datetime>20180803T112137,94+10</datetime></revised>
+<lastaccessed><datetime>20180803T112137,95+10</datetime></lastaccessed>
+<addedtofile><datetime>20180523T132407,87+10</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Chris Hudson/OU=Staff/O=ABS</name><name>CN=Chris Hudson/O=Chris Hudson</name></updatedby>
+<wassignedby><name>CN=Chris Hudson/O=Chris Hudson</name></wassignedby>
+<item name="$TITLE" sign="true"><text>CLASS_AgentLog</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess"><text>1</text></item>
+
+</note>

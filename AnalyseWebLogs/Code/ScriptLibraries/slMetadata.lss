@@ -1,0 +1,91 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Function getMetaData (metaKey As String) As Variant
+Declare Function setMetaData (metaKey As String, itmNewValue As NotesItem) As String
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:1:getMetaData:1:8
+Function getMetaData (metaKey As String) As Variant
+	Dim session As NotesSession	
+	Dim db As NotesDatabase	
+	Dim vwMetaData As NotesView
+	Dim docMetaData As NotesDocument
+	
+     'Find the requested profile
+	Set session = New NotesSession
+	Set db = session.CurrentDatabase
+	Set vwMetaData = db.GetView( "vwMetaData" )
+	Set docMetaData = vwMetaData.GetDocumentByKey( metaKey, True )
+	
+	If Not docMetaData Is Nothing Then
+		Select Case docMetaData.metaDataType(0)
+		Case "Text"
+			getMetaData = docMetaData.GetItemValue("metaText")(0)
+		Case "TextList"
+			getMetaData = docMetaData.GetItemValue("metaTextList")
+		Case "Date"
+			getMetaData = docMetaData.GetItemValue("metaDate")(0)
+		Case "DateList"
+			getMetaData = docMetaData.GetItemValue("metaDateList")
+		Case "Time"
+			getMetaData = docMetaData.GetItemValue("metaTime")(0)
+		Case "TimeList"
+			getMetaData = docMetaData.GetItemValue("metaTimeList")
+		Case "DateTime"
+			getMetaData = docMetaData.GetItemValue("metaDateTime")(0)
+		Case "DateTimeList"
+			getMetaData = docMetaData.GetItemValue("metaDateTimeList")
+		Case "Number"
+			getMetaData = docMetaData.GetItemValue("metaNumber")(0)
+		Case "NumberList"
+			getMetaData = docMetaData.GetItemValue("metaNumberList")
+		Case Else
+			getMetaData = False
+		End Select
+	Else
+		getMetaData = False
+	End If
+	
+	Set session = Nothing
+	Set db = Nothing
+	Set docMetaData = Nothing
+	Set vwMetaData = Nothing
+	
+End Function
+
+'++LotusScript Development Environment:2:1:setMetaData:1:8
+Function setMetaData (metaKey As String, itmNewValue As NotesItem) As String
+	'UNDER CONSTRUCTION
+	'================
+	'Allows a metadata item to be updated.  
+	'If metadata item  already exists then datatype must match
+	'If metadata item does not exist then new one is created.	
+	
+	Dim session As NotesSession	
+	Dim db As NotesDatabase	
+	Dim vwMetaData As NotesView
+	Dim docMetaData As NotesDocument
+	
+     'Find the requested metadata Document
+	Set session = New NotesSession
+	Set db = session.CurrentDatabase
+	Set vwMetaData = db.GetView( "vwMetaData" )
+	Set docMetaData = vwMetaData.GetDocumentByKey( metaKey, True )
+	
+	If Not docMetaData Is Nothing Then
+		'check datatype
+		
+		' if OK then 
+			'replace metadata item
+		'else 
+			'return error
+		'end if
+	Else 
+		'create new metadata Document
+	End If
+	
+End Function

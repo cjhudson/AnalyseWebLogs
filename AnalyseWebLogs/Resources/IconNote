@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='10.0'
+ replicaid='CA2582960012B041'>
+<noteinfo noteid='116' unid='2A60D4CE8F95F00CCA256E990010D00E' sequence='25'>
+<created><datetime>20040519T130338,38+10</datetime></created>
+<modified><datetime>20180523T132408,81+10</datetime></modified>
+<revised><datetime>20180523T132408,80+10</datetime></revised>
+<lastaccessed><datetime>20180523T132408,81+10</datetime></lastaccessed>
+<addedtofile><datetime>20180523T132407,81+10</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Chris Hudson/OU=Staff/O=ABS</name><name>CN=Chris Hudson/O=Chris Hudson</name></updatedby>
+<item name='$DefaultFrameset'><text>fsMain</text></item>
+<item name='$FlagsNoRefresh'><text/></item>
+<item name='IconBitmap' summary='true'>
+<rawitemdata type='6'>
+AiAgAQAA///n////5////+f///wAD//8AA///+f////n////5////+f////n///z5///8+f/8/Pn
+//Pz5//z8+f/8/AH//PwB//z8+f/8/Pn//AAB//wAAf/8//n//P/5//z/+AH8//gB/P/5//z/+f/
+8//n////5////+f////n//////8AAAAAAAAAAAAKoAAAAAAAAAAAAAAAAAAACqAAAAAAAAAAAAAA
+AAAAAAqgAAAAAAAAAAAAAAAAmZmaqZmZmQAAAAAAAAAAAJmZmqmZmZkAAAAAAAAAAAAAAAqgAAAA
+AAAAAAAAAAAAAAAKoAAAAAAAAAAAAAAAAAAACqAAAAAAAAAAAAAAAAAAAAqgAAAAAAAAAAAAAAAA
+AAAKoAAAAAAAAAAAAAAAiAAACqAAAAAAAAAAAAAAAIgAAAqgAAAAAAAAAIgAAACIAAAKoAAAAAAA
+AACIAAAAiAAACqAAAAAAAAAAiAAAAIgAAAqgAAAAAAAAAIgAAACIiIiKoAAAAAAAAACIAAAAiIiI
+iqAAAAAAAAAAiAAAAIgAAAqgAAAAAAAAAIgAAACIAAAKoAAAAAAAAACIiIiIiIiIiqAAAAAAAAAA
+iIiIiIiIiIqgAAAAAAAAAIgAAAAAAAAKoAAAAAAAAACIAAAAAAAACqAAAAAAAAAAiAAAAAAAAAqs
+zMzMwAAAAIgAAAAAAAAKrMzMzMAAAACIAAAAAAAACqAAAAAAAAAAiAAAAAAAAAqgAAAAAAAAAIgA
+AAAAAAAKoAAAAAAAAAAAAAAAAAAACqAAAAAAAAAAAAAAAAAAAAqgAAAAAAAAAAAAAAAAAAAKoAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$Flags'><text>JFz</text></item>
+<item name='$Daos'><text>0</text></item>
+<item name='$TITLE'><text>Analyse Weblogs [Template]
+#1WeblogAnalyser</text></item></note>
+
